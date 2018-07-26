@@ -36,6 +36,7 @@ class UnFinishedFragment : DataBindingFragment<FragmentUnfinishedBinding>(),
 
     companion object {
         const val REQUEST_CODE = 111
+        const val REQUEST_CODE_UPDATE = 112
 
         fun newInstance() = UnFinishedFragment().apply { }
     }
@@ -186,16 +187,18 @@ class UnFinishedFragment : DataBindingFragment<FragmentUnfinishedBinding>(),
     }
 
     private fun popMoreDialog(todo: ToDoBean, position: Int) {
-//        activity?.toast("popMoreDialog")
         activity?.let {
             val dialog = CpBottomSheetDialog(it)
             dialog.setItemData(arrayOf("修改", "删除", "取消"))
             dialog.show()
             dialog.setOnItemClickListener(object : CpBottomSheetDialog.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    activity?.toast("" + position)
                     when (position) {
                         0 -> {//修改
+                            val intent = Intent(context, AddNewActivity::class.java)
+                            intent.putExtra(AddNewActivity.ToDoBean, todo)
+                            intent.putExtra(AddNewActivity.POSITION, position)
+                            activity?.startActivityForResult(intent, REQUEST_CODE_UPDATE)
                         }
                         1 -> {//删除
                             deleteTodo(todo, position)
@@ -210,6 +213,7 @@ class UnFinishedFragment : DataBindingFragment<FragmentUnfinishedBinding>(),
             })
         }
     }
+
 
     private fun deleteTodo(todo: ToDoBean, position: Int) {
         if (todo == null || todo.id == null) {
@@ -237,14 +241,23 @@ class UnFinishedFragment : DataBindingFragment<FragmentUnfinishedBinding>(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode != REQUEST_CODE || resultCode != Activity.RESULT_OK ||
+        if (resultCode != Activity.RESULT_OK ||
                 data == null) {
             return
         }
-
-        val todo = data.getSerializableExtra("todo") as ToDoBean
-        mData.add(0, todo)
-        adapter?.notifyItemInserted(0)
+        when (requestCode) {
+            REQUEST_CODE -> {
+                val todo = data.getSerializableExtra("todo") as ToDoBean
+                mData.add(0, todo)
+                adapter?.notifyItemInserted(0)
+            }
+            REQUEST_CODE_UPDATE -> {
+                val todo = data.getSerializableExtra("todo") as ToDoBean
+                val position = data.getIntExtra(AddNewActivity.POSITION, 0)
+                mData.add(position, todo)
+                adapter?.notifyItemChanged(position)
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -48,4 +48,10 @@ interface Api {
     @GET("todo/deleted")
     fun todo_deleted(@Field("u_id") u_id: Long)
             : Observable<BaseResult<List<ToDoBean>>>
+
+    @POST("todo/update")
+    fun todo_update(@Query("u_id") u_id: Int,
+                    @Query("id") id: Int,
+                    @Query("content") content: String)
+            : Observable<BaseResult<ToDoBean>>
 }

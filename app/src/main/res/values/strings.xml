@@ -4,6 +4,7 @@
     <string name="add_new_todo">添加新的待办事项</string>
     <string name="unfinished">未完成</string>
     <string name="add_new">新增</string>
+    <string name="update">修改</string>
     <string name="sure">确定</string>
     <string name="todo">待办事项</string>
     <string name="desc">描述（可选）</string>

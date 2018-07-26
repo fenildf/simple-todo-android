@@ -8,8 +8,8 @@ import com.chenpeng.simpleToDo.R
 import com.chenpeng.simpleToDo.databinding.ActivityRegisterBinding
 import com.chenpeng.simpleToDo.entities.BaseResult
 import com.chenpeng.simpleToDo.showError
-import com.chenpeng.simpleToDo.showSuccess
 import com.chenpeng.simpleToDo.stroe.net.BaseObserver
+import com.chenpeng.simpleToDo.toast
 import com.chenpeng.simpleToDo.ui.base.DataBindingActivity
 import com.chenpeng.simpleToDo.viewmodel.Live
 import com.chenpeng.simpleToDo.viewmodel.UserViewModel
@@ -77,7 +77,7 @@ class RegisterActivity : DataBindingActivity<ActivityRegisterBinding>(), View.On
                             showError(baseResult.message)
                             return
                         }
-                        showSuccess(baseResult.message)
+                        toast(baseResult.message)
                         finish()
                     }
 

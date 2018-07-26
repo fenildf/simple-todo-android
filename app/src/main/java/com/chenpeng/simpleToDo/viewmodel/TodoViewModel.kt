@@ -55,9 +55,20 @@ class TodoViewModel : ViewModel() {
         }
     }
 
-    fun delete(u_id: Int?, todoId: Int) = when (u_id != null){
+    fun delete(u_id: Int?, todoId: Int) = when (u_id != null) {
         true -> {
             ApiFactory.api().todo_delete(u_id!!, todoId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+        }
+        false -> {
+            null
+        }
+    }
+
+    fun update(u_id: Int?, todoId: Int, content: String) = when (u_id != null) {
+        true -> {
+            ApiFactory.api().todo_update(u_id!!, todoId, content)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
         }
