@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/todo"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/not_finished_todo"
+            android:title="未完成" />
+
+        <item
+            android:id="@+id/finished_todo"
+            android:title="已完成" />
+
+    </group>
+
+    <group android:id="@+id/setting">
+
+        <item
+            android:visible="false"
+            android:id="@+id/exit"
+            android:title="登出" />
+
+    </group>
+
+</menu>

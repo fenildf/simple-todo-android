@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">简易ToDo</string>
+    <string name="add_new_todo">添加新的待办事项</string>
+    <string name="unfinished">未完成</string>
+    <string name="add_new">新增</string>
+    <string name="sure">确定</string>
+    <string name="todo">待办事项</string>
+    <string name="desc">描述（可选）</string>
+    <string name="normal">正常</string>
+    <string name="urgency">紧急</string>
+    <string name="long_playing">延后的</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="please_input_phone">请输入手机号</string>
+    <string name="please_input_pwd">请输入密码</string>
+    <string name="please_input_pwd2">请再次输入密码</string>
+</resources>
